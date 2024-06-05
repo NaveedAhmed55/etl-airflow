@@ -16,7 +16,7 @@ default_args = {
 }
 
 @dag(
-    dag_id='ETL_toll_data_11', 
+    dag_id='ETL_toll_data_12', 
     default_args=default_args, 
     start_date=days_ago(0),
     schedule_interval='@daily',
@@ -87,8 +87,10 @@ def hello_world_etl():
         except Exception as e:
             print(f"error while processing {infile} : {e}")
     @task()
-    def transform_data():
-        pass
+    def transform_data(infile,outfile):
+        df=pd.read_csv(infile)
+        df.iloc[:,3]=df.iloc[:,3].str.upper()
+        df.to_csv(outfile,index=False)
 
     DESTINATION = "/opt/airflow/ds"
     source = os.path.join(DESTINATION, "tolldata.tgz")
@@ -104,7 +106,8 @@ def hello_world_etl():
     tollplaza_data_output = os.path.join(DESTINATION, "tsv_data.csv")
     payment_data_output= os.path.join(DESTINATION, "fixed_width_data.csv")
     infiles=[vehicle_data_output,tollplaza_data_output,payment_data_output]
-    combined_file=os.path.join(DESTINATION, "newfile.csv")
+    combined_file=os.path.join(DESTINATION, "extracted_data.csv")
+    transformed_data_output=os.path.join(DESTINATION, "transformed_data.csv")
 
 
     unzip_task = unzip_data(source, DESTINATION)
@@ -112,8 +115,9 @@ def hello_world_etl():
     extract_tsv_task = extract_data_from_tsv(tollplaza_data, tollplaza_data_output)
     extract_data_from_fixed_width_task=extract_data_from_fixed_width(payment_data,payment_data_output)
     consolidate_data_task=consolidate_data(infiles,combined_file)
+    transform_data_task=transform_data(combined_file,transformed_data_output)
 
     # series of tasks
-    unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task
-
+    unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task
+ 
 greet_dag = hello_world_etl()
