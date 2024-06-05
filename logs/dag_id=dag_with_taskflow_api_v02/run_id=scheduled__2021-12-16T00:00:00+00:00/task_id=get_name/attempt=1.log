@@ -1,0 +1,8 @@
+[2024-06-04T21:57:01.477+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_taskflow_api_v02.get_name scheduled__2021-12-16T00:00:00+00:00 [queued]>
+[2024-06-04T21:57:01.525+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_taskflow_api_v02.get_name scheduled__2021-12-16T00:00:00+00:00 [queued]>
+[2024-06-04T21:57:01.530+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 6
+[2024-06-04T21:57:01.657+0000] {taskinstance.py:1350} INFO - Executing <Task(_PythonDecoratedOperator): get_name> on 2021-12-16 00:00:00+00:00
+[2024-06-04T21:57:01.730+0000] {standard_task_runner.py:57} INFO - Started process 415 to run task
+[2024-06-04T21:57:01.751+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_with_taskflow_api_v02', 'get_name', 'scheduled__2021-12-16T00:00:00+00:00', '--job-id', '152', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmp5le7wmud']
+[2024-06-04T21:57:01.770+0000] {standard_task_runner.py:85} INFO - Job 152: Subtask get_name
+[2024-06-04T21:57:02.133+0000] {task_command.py:410} INFO - Running <TaskInstance: dag_with_taskflow_api_v02.get_name scheduled__2021-12-16T00:00:00+00:00 [running]> on host 8bd0ab976bc4

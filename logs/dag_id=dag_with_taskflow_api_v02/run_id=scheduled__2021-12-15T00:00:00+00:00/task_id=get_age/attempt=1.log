@@ -1,0 +1,8 @@
+[2024-06-04T21:57:01.114+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_taskflow_api_v02.get_age scheduled__2021-12-15T00:00:00+00:00 [queued]>
+[2024-06-04T21:57:01.216+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_taskflow_api_v02.get_age scheduled__2021-12-15T00:00:00+00:00 [queued]>
+[2024-06-04T21:57:01.226+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 6
+[2024-06-04T21:57:01.307+0000] {taskinstance.py:1350} INFO - Executing <Task(_PythonDecoratedOperator): get_age> on 2021-12-15 00:00:00+00:00
+[2024-06-04T21:57:01.335+0000] {standard_task_runner.py:57} INFO - Started process 408 to run task
+[2024-06-04T21:57:01.374+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_with_taskflow_api_v02', 'get_age', 'scheduled__2021-12-15T00:00:00+00:00', '--job-id', '151', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpy8bjd8n5']
+[2024-06-04T21:57:01.384+0000] {standard_task_runner.py:85} INFO - Job 151: Subtask get_age
+[2024-06-04T21:57:01.947+0000] {task_command.py:410} INFO - Running <TaskInstance: dag_with_taskflow_api_v02.get_age scheduled__2021-12-15T00:00:00+00:00 [running]> on host 8bd0ab976bc4

@@ -1,0 +1,14 @@
+[2024-06-05T00:06:36.925+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_toll_data_10.unzip_data manual__2024-06-05T00:06:35.171103+00:00 [queued]>
+[2024-06-05T00:06:36.945+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_toll_data_10.unzip_data manual__2024-06-05T00:06:35.171103+00:00 [queued]>
+[2024-06-05T00:06:36.946+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2024-06-05T00:06:36.973+0000] {taskinstance.py:1350} INFO - Executing <Task(_PythonDecoratedOperator): unzip_data> on 2024-06-05 00:06:35.171103+00:00
+[2024-06-05T00:06:36.981+0000] {standard_task_runner.py:57} INFO - Started process 588 to run task
+[2024-06-05T00:06:36.987+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ETL_toll_data_10', 'unzip_data', 'manual__2024-06-05T00:06:35.171103+00:00', '--job-id', '207', '--raw', '--subdir', 'DAGS_FOLDER/ETL_toll_data.py', '--cfg-path', '/tmp/tmpr_je2c9u']
+[2024-06-05T00:06:36.989+0000] {standard_task_runner.py:85} INFO - Job 207: Subtask unzip_data
+[2024-06-05T00:06:37.085+0000] {task_command.py:410} INFO - Running <TaskInstance: ETL_toll_data_10.unzip_data manual__2024-06-05T00:06:35.171103+00:00 [running]> on host db97e7d4b1f1
+[2024-06-05T00:06:37.233+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='naveedcodes@gmail.com' AIRFLOW_CTX_DAG_OWNER='naveed' AIRFLOW_CTX_DAG_ID='ETL_toll_data_10' AIRFLOW_CTX_TASK_ID='unzip_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-05T00:06:35.171103+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-05T00:06:35.171103+00:00'
+[2024-06-05T00:06:37.237+0000] {logging_mixin.py:149} INFO - Error extracting /opt/***/data_source/tolldata.tgz/tolldata.tgz: [Errno 2] No such file or directory: '/opt/***/data_source/tolldata.tgz/tolldata.tgz'
+[2024-06-05T00:06:37.238+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-06-05T00:06:37.266+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=ETL_toll_data_10, task_id=unzip_data, execution_date=20240605T000635, start_date=20240605T000636, end_date=20240605T000637
+[2024-06-05T00:06:37.338+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2024-06-05T00:06:37.413+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
