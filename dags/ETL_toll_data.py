@@ -6,6 +6,7 @@ from airflow.utils.dates import days_ago
 
 import pandas as pd
 
+
 default_args = {
     'owner': 'naveed',
     'email': 'naveedcodes@gmail.com',
@@ -26,14 +27,6 @@ def hello_world_etl():
 
     @task()
     def unzip_data(source: str, destination: str):
-        """
-        Extracts the contents of the source dataset .tgz file to the specified
-        destination directory.
-
-        Args:
-            source (str): Path to the source .tgz file.
-            destination (str): Directory where the contents will be extracted.
-        """
         try:
             with tarfile.open(source, "r:gz") as tgz:
                 tgz.extractall(destination)
@@ -117,7 +110,7 @@ def hello_world_etl():
     consolidate_data_task=consolidate_data(infiles,combined_file)
     transform_data_task=transform_data(combined_file,transformed_data_output)
 
-    # series of tasks
+    # Dag pipeline definition
     unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task
  
 greet_dag = hello_world_etl()
