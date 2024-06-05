@@ -70,8 +70,6 @@ def hello_world_etl():
                 for line in readfile:
                     clean_line = ' '.join(line.strip().split())
                     columns = clean_line.split(' ')
-                    
-                    
                     select_columns = columns[9], columns[10]
                     selected_line = ','.join(select_columns)
                     writefile.write(selected_line + '\n')

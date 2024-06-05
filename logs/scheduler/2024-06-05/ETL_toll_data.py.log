@@ -3112,3 +3112,17 @@ SyntaxError: invalid syntax
 [2024-06-05T21:05:18.244+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:05:18.243+0000] {dag.py:2726} INFO - Sync 1 DAGs
 [2024-06-05T21:05:18.340+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:05:18.340+0000] {dag.py:3490} INFO - Setting next_dagrun for ETL_toll_data_01 to 2024-06-05T00:00:00+00:00, run_after=2024-06-06T00:00:00+00:00
 [2024-06-05T21:05:18.397+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ETL_toll_data.py took 0.268 seconds
+[2024-06-05T21:05:48.512+0000] {processor.py:156} INFO - Started process (PID=811) to work on /opt/airflow/dags/ETL_toll_data.py
+[2024-06-05T21:05:48.514+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/ETL_toll_data.py for tasks to queue
+[2024-06-05T21:05:48.516+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:05:48.516+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/ETL_toll_data.py
+[2024-06-05T21:05:48.573+0000] {processor.py:809} INFO - DAG(s) dict_keys(['ETL_toll_data_01']) retrieved from /opt/airflow/dags/ETL_toll_data.py
+[2024-06-05T21:05:48.615+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:05:48.615+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2024-06-05T21:05:48.662+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:05:48.661+0000] {dag.py:3490} INFO - Setting next_dagrun for ETL_toll_data_01 to 2024-06-05T00:00:00+00:00, run_after=2024-06-06T00:00:00+00:00
+[2024-06-05T21:05:48.711+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ETL_toll_data.py took 0.206 seconds
+[2024-06-05T21:06:15.068+0000] {processor.py:156} INFO - Started process (PID=812) to work on /opt/airflow/dags/ETL_toll_data.py
+[2024-06-05T21:06:15.070+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/ETL_toll_data.py for tasks to queue
+[2024-06-05T21:06:15.076+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:06:15.075+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/ETL_toll_data.py
+[2024-06-05T21:06:15.193+0000] {processor.py:809} INFO - DAG(s) dict_keys(['ETL_toll_data_01']) retrieved from /opt/airflow/dags/ETL_toll_data.py
+[2024-06-05T21:06:15.258+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:06:15.257+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2024-06-05T21:06:15.330+0000] {logging_mixin.py:149} INFO - [2024-06-05T21:06:15.330+0000] {dag.py:3490} INFO - Setting next_dagrun for ETL_toll_data_01 to 2024-06-05T00:00:00+00:00, run_after=2024-06-06T00:00:00+00:00
+[2024-06-05T21:06:15.414+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ETL_toll_data.py took 0.357 seconds
