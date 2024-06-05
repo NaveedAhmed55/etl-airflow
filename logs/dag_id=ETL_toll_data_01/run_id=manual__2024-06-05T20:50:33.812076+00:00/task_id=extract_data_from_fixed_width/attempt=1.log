@@ -1,0 +1,13 @@
+[2024-06-05T20:50:37.392+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_toll_data_01.extract_data_from_fixed_width manual__2024-06-05T20:50:33.812076+00:00 [queued]>
+[2024-06-05T20:50:37.420+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_toll_data_01.extract_data_from_fixed_width manual__2024-06-05T20:50:33.812076+00:00 [queued]>
+[2024-06-05T20:50:37.421+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2024-06-05T20:50:37.466+0000] {taskinstance.py:1350} INFO - Executing <Task(_PythonDecoratedOperator): extract_data_from_fixed_width> on 2024-06-05 20:50:33.812076+00:00
+[2024-06-05T20:50:37.476+0000] {standard_task_runner.py:57} INFO - Started process 616 to run task
+[2024-06-05T20:50:37.489+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ETL_toll_data_01', 'extract_data_from_fixed_width', 'manual__2024-06-05T20:50:33.812076+00:00', '--job-id', '269', '--raw', '--subdir', 'DAGS_FOLDER/ETL_toll_data.py', '--cfg-path', '/tmp/tmpclnagub_']
+[2024-06-05T20:50:37.493+0000] {standard_task_runner.py:85} INFO - Job 269: Subtask extract_data_from_fixed_width
+[2024-06-05T20:50:37.629+0000] {task_command.py:410} INFO - Running <TaskInstance: ETL_toll_data_01.extract_data_from_fixed_width manual__2024-06-05T20:50:33.812076+00:00 [running]> on host ac697d213cd9
+[2024-06-05T20:50:37.867+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='naveedcodes@gmail.com' AIRFLOW_CTX_DAG_OWNER='naveed' AIRFLOW_CTX_DAG_ID='ETL_toll_data_01' AIRFLOW_CTX_TASK_ID='extract_data_from_fixed_width' AIRFLOW_CTX_EXECUTION_DATE='2024-06-05T20:50:33.812076+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-05T20:50:33.812076+00:00'
+[2024-06-05T20:50:37.954+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-06-05T20:50:37.988+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=ETL_toll_data_01, task_id=extract_data_from_fixed_width, execution_date=20240605T205033, start_date=20240605T205037, end_date=20240605T205037
+[2024-06-05T20:50:38.085+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2024-06-05T20:50:38.187+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

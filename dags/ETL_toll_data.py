@@ -38,6 +38,7 @@ def hello_world_etl():
             print(f"Successfully extracted {source} to {destination}")
         except Exception as e:
             print(f"Error extracting {source}: {e}")
+
     @task()
     def extract_data_from_csv(infile, outfile):
         try:
@@ -50,14 +51,64 @@ def hello_world_etl():
         except Exception as e:
             print(f"Error processing {infile}: {e}")
 
+    @task()
+    def extract_data_from_tsv(infile, outfile):
+        try:
+            with open(infile, 'r') as readfile, open(outfile, 'w') as writefile:
+                for line in readfile:
+                    columns = line.strip().split('\t')
+                    selected_columns = columns[4], columns[5], columns[6]
+                    selected_line = ",".join(selected_columns)
+                    writefile.write(selected_line + "\n")
+        except Exception as e:
+            print(f"Error while processing {infile}: {e}")
+
+    @task()
+    def extract_data_from_fixed_width(infile, outfile):
+        try:
+            with open(infile, 'r') as readfile, open(outfile, 'w') as writefile:
+                for line in readfile:
+                    clean_line = ' '.join(line.strip().split())
+                    columns = clean_line.split(' ')
+                    
+                    
+                    select_columns = columns[9], columns[10]
+                    selected_line = ','.join(select_columns)
+                    writefile.write(selected_line + '\n')
+                        
+        except Exception as e:
+            print(f"Error while processing file {infile} : {e}")
+
+    @task()
+    def consolidate_data():
+
+        pass
+
+    @task()
+    def transform_data():
+        pass
+
     DESTINATION = "/opt/airflow/ds"
     source = os.path.join(DESTINATION, "tolldata.tgz")
-    
-    inputfile="/opt/airflow/ds/vehicle-data.csv"
-    outputfile='/opt/airflow/ds/csv_data.csv'
-    unzip_data=unzip_data(source, DESTINATION)
-    extract_data_from_csv=extract_data_from_csv(inputfile,outputfile)
-    
-    unzip_data >> extract_data_from_csv
+
+    # input files paths
+    vehicle_data = os.path.join(DESTINATION, "vehicle-data.csv")
+    tollplaza_data = os.path.join(DESTINATION, "tollplaza-data.tsv")
+    fileformats = os.path.join(DESTINATION, "fileformats.txt")
+    payment_data = os.path.join(DESTINATION, "payment-data.txt")
+
+    # output files paths
+    vehicle_data_output = os.path.join(DESTINATION, "csv_data.csv")
+    tollplaza_data_output = os.path.join(DESTINATION, "tsv_data.csv")
+    fileformats_output = os.path.join(DESTINATION, "fixed_width_data.csv")
+    payment_data_output= os.path.join(DESTINATION, "fixed_width_data.csv")
+
+    unzip_task = unzip_data(source, DESTINATION)
+    extract_csv_task = extract_data_from_csv(vehicle_data, vehicle_data_output)
+    extract_tsv_task = extract_data_from_tsv(tollplaza_data, tollplaza_data_output)
+    extract_data_from_fixed_width_task=extract_data_from_fixed_width(payment_data,payment_data_output)
+
+    # series of tasks
+    unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task]
 
 greet_dag = hello_world_etl()
