@@ -27,6 +27,7 @@ default_args = {
 )
 def hello_world_etl():
 
+    #unzip the downloaded tgz
     @task()
     def unzip_data(source: str, destination: str):
         try:
@@ -164,9 +165,7 @@ def hello_world_etl():
     load_to_database_task=load_to_database()
 
     # Dag pipeline definition
-    #unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task>> load_to_database_task
-
-    load_to_database_task
+    unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task>> load_to_database_task
     
  
 greet_dag = hello_world_etl()
