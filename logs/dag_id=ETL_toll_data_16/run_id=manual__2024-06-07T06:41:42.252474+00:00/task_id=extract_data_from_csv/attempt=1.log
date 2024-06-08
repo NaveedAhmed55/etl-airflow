@@ -1,0 +1,13 @@
+[2024-06-07T06:41:47.966+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_toll_data_16.extract_data_from_csv manual__2024-06-07T06:41:42.252474+00:00 [queued]>
+[2024-06-07T06:41:47.993+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_toll_data_16.extract_data_from_csv manual__2024-06-07T06:41:42.252474+00:00 [queued]>
+[2024-06-07T06:41:47.995+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2024-06-07T06:41:48.044+0000] {taskinstance.py:1350} INFO - Executing <Task(_PythonDecoratedOperator): extract_data_from_csv> on 2024-06-07 06:41:42.252474+00:00
+[2024-06-07T06:41:48.053+0000] {standard_task_runner.py:57} INFO - Started process 176 to run task
+[2024-06-07T06:41:48.065+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ETL_toll_data_16', 'extract_data_from_csv', 'manual__2024-06-07T06:41:42.252474+00:00', '--job-id', '338', '--raw', '--subdir', 'DAGS_FOLDER/ETL_toll_data.py', '--cfg-path', '/tmp/tmpvzcwcihl']
+[2024-06-07T06:41:48.078+0000] {standard_task_runner.py:85} INFO - Job 338: Subtask extract_data_from_csv
+[2024-06-07T06:41:48.181+0000] {task_command.py:410} INFO - Running <TaskInstance: ETL_toll_data_16.extract_data_from_csv manual__2024-06-07T06:41:42.252474+00:00 [running]> on host f8b9d10836c7
+[2024-06-07T06:41:48.689+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='naveedcodes@gmail.com' AIRFLOW_CTX_DAG_OWNER='naveed' AIRFLOW_CTX_DAG_ID='ETL_toll_data_16' AIRFLOW_CTX_TASK_ID='extract_data_from_csv' AIRFLOW_CTX_EXECUTION_DATE='2024-06-07T06:41:42.252474+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-07T06:41:42.252474+00:00'
+[2024-06-07T06:41:48.824+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-06-07T06:41:48.863+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=ETL_toll_data_16, task_id=extract_data_from_csv, execution_date=20240607T064142, start_date=20240607T064147, end_date=20240607T064148
+[2024-06-07T06:41:48.945+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2024-06-07T06:41:49.031+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -3,13 +3,14 @@ import tarfile
 import os
 from airflow.decorators import dag, task
 from airflow.utils.dates import days_ago
+import psycopg2
 
 import pandas as pd
 
 
 default_args = {
     'owner': 'naveed',
-    'email': 'naveedcodes@gmail.com',
+    'email': 'dummy@gmail.com',
     'email_on_failure': True,
     'email_on_retry': True,
     'retries': 1,
@@ -17,11 +18,11 @@ default_args = {
 }
 
 @dag(
-    dag_id='ETL_toll_data_01', 
+    dag_id='ETL_toll_data_16', 
     default_args=default_args, 
     start_date=days_ago(0),
     schedule_interval='@daily',
-    description='Final Assignment'
+    description='ETL-PIPELINE'
 )
 def hello_world_etl():
 
@@ -85,6 +86,28 @@ def hello_world_etl():
         df.iloc[:,3]=df.iloc[:,3].str.upper()
         df.to_csv(outfile,index=False)
 
+    @task()
+    def load_to_database():
+        #configure connection  to postgresql database
+        dbname='airflow'
+        user='airflow'
+        password='airflow'
+        host='db'
+        port='5432'
+
+        try:
+            conn= psycopg2.connect(
+                dbname=dbname,
+                user=user,
+                password=password,
+                port=port,
+                host=host
+            )
+            print("database connected successfully")
+            conn.close()
+        except Exception as e:
+            print(f"Error while connect to database {dbname} {e}")
+
     DESTINATION = "/opt/airflow/ds"
     source = os.path.join(DESTINATION, "tolldata.tgz")
 
@@ -109,8 +132,10 @@ def hello_world_etl():
     extract_data_from_fixed_width_task=extract_data_from_fixed_width(payment_data,payment_data_output)
     consolidate_data_task=consolidate_data(infiles,combined_file)
     transform_data_task=transform_data(combined_file,transformed_data_output)
+    load_to_database_task=load_to_database()
 
     # Dag pipeline definition
     unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task
+    load_to_database_task
  
 greet_dag = hello_world_etl()
