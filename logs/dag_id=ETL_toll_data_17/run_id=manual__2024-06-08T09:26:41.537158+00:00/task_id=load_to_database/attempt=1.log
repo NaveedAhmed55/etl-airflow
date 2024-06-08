@@ -1,0 +1,15 @@
+[2024-06-08T09:26:47.858+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_toll_data_17.load_to_database manual__2024-06-08T09:26:41.537158+00:00 [queued]>
+[2024-06-08T09:26:47.932+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_toll_data_17.load_to_database manual__2024-06-08T09:26:41.537158+00:00 [queued]>
+[2024-06-08T09:26:47.936+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2024-06-08T09:26:48.083+0000] {taskinstance.py:1350} INFO - Executing <Task(_PythonDecoratedOperator): load_to_database> on 2024-06-08 09:26:41.537158+00:00
+[2024-06-08T09:26:48.114+0000] {standard_task_runner.py:57} INFO - Started process 520 to run task
+[2024-06-08T09:26:48.129+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ETL_toll_data_17', 'load_to_database', 'manual__2024-06-08T09:26:41.537158+00:00', '--job-id', '178', '--raw', '--subdir', 'DAGS_FOLDER/ETL_toll_data.py', '--cfg-path', '/tmp/tmpaep2c7ys']
+[2024-06-08T09:26:48.140+0000] {standard_task_runner.py:85} INFO - Job 178: Subtask load_to_database
+[2024-06-08T09:26:48.496+0000] {task_command.py:410} INFO - Running <TaskInstance: ETL_toll_data_17.load_to_database manual__2024-06-08T09:26:41.537158+00:00 [running]> on host bec75c81cc74
+[2024-06-08T09:26:49.432+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='dummy@gmail.com' AIRFLOW_CTX_DAG_OWNER='naveed' AIRFLOW_CTX_DAG_ID='ETL_toll_data_17' AIRFLOW_CTX_TASK_ID='load_to_database' AIRFLOW_CTX_EXECUTION_DATE='2024-06-08T09:26:41.537158+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-08T09:26:41.537158+00:00'
+[2024-06-08T09:26:49.498+0000] {logging_mixin.py:149} INFO - database connected successfully
+[2024-06-08T09:26:49.516+0000] {logging_mixin.py:149} INFO - Error while connect to database *** not all arguments converted during string formatting
+[2024-06-08T09:26:49.518+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-06-08T09:26:49.594+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=ETL_toll_data_17, task_id=load_to_database, execution_date=20240608T092641, start_date=20240608T092647, end_date=20240608T092649
+[2024-06-08T09:26:49.818+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2024-06-08T09:26:49.942+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -4,6 +4,7 @@ import os
 from airflow.decorators import dag, task
 from airflow.utils.dates import days_ago
 import psycopg2
+import csv
 
 import pandas as pd
 
@@ -18,7 +19,7 @@ default_args = {
 }
 
 @dag(
-    dag_id='ETL_toll_data_16', 
+    dag_id='ETL_toll_data_17', 
     default_args=default_args, 
     start_date=days_ago(0),
     schedule_interval='@daily',
@@ -41,7 +42,7 @@ def hello_world_etl():
             with open(infile, "r") as readfile, open(outfile, "w") as writefile:
                 for line in readfile:
                     columns = line.strip().split(",")
-                    selected_columns = columns[0], columns[1], columns[2], columns[3], columns[-1]
+                    selected_columns = columns[0], columns[1], columns[2], columns[3]
                     selected_line = ",".join(selected_columns)
                     writefile.write(selected_line + "\n")
         except Exception as e:
@@ -104,6 +105,32 @@ def hello_world_etl():
                 host=host
             )
             print("database connected successfully")
+            cursor=conn.cursor()
+            create_table_query = """
+                CREATE TABLE IF NOT EXISTS VEHICLE_DATA(
+                ID VARCHAR(50),
+                Timestamp VARCHAR(50),
+                Anonymized_Vehicle_number VARCHAR(50),
+                Vehicle_type VARCHAR(50),
+                Number_of_axles VARCHAR(50),
+                Tollplaza_ID VARCHAR(50),
+                Tollplaza_CODE VARCHAR(50),
+                Type_of_Payment_code VARCHAR(50),
+                Vehicle_code VARCHAR(50)
+                )
+            """
+            cursor.execute(create_table_query)
+            conn.commit()
+
+            with open(transformed_data_output, 'r') as csvfile:
+                for line in csvfile:
+                    row = line.strip().split(',')  
+                    cursor.execute(
+                        "INSERT INTO VEHICLE_DATA (ID, Timestamp, Anonymized_Vehicle_number, Vehicle_type, Number_of_axles, Tollplaza_ID, Tollplaza_CODE, Type_of_Payment_code, Vehicle_code) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                        row
+                    )
+            conn.commit()
+            cursor.close()
             conn.close()
         except Exception as e:
             print(f"Error while connect to database {dbname} {e}")
@@ -126,6 +153,8 @@ def hello_world_etl():
     transformed_data_output=os.path.join(DESTINATION, "transformed_data.csv")
 
 
+
+
     unzip_task = unzip_data(source, DESTINATION)
     extract_csv_task = extract_data_from_csv(vehicle_data, vehicle_data_output)
     extract_tsv_task = extract_data_from_tsv(tollplaza_data, tollplaza_data_output)
@@ -135,7 +164,9 @@ def hello_world_etl():
     load_to_database_task=load_to_database()
 
     # Dag pipeline definition
-    unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task
+    #unzip_task >> [extract_csv_task,extract_tsv_task,extract_data_from_fixed_width_task] >> consolidate_data_task >> transform_data_task>> load_to_database_task
+
     load_to_database_task
+    
  
 greet_dag = hello_world_etl()
